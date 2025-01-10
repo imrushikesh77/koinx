@@ -2,7 +2,7 @@ name: Scheduled Price Update
 
 on:
   schedule:
-    - cron: '* * * * *'  # Runs once every minute (you can adjust this)
+    - cron: '0 * * * *'  # Run every hour
   workflow_dispatch:
 
 jobs:
