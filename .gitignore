@@ -1,2 +1,60 @@
-/node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Build artifacts
+dist/
+build/
+
+# Dependency directories
+.bower_components/
+jspm_packages/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+._*
+.sass-cache/
+*.tmp
+*.bak
+*.orig
+
+# IDE-specific files
+.idea/
+.vscode/
+*.code-workspace
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# Miscellaneous
+*.tgz
+*.lock-wscript
+*.sqlite*
+*.log
+*.log.*
