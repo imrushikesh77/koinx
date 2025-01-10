@@ -3,7 +3,8 @@ import express from "express";
 // Import the controller functions
 import {
     getStats,
-    getDeviation
+    getDeviation,
+    handler
 } from "../controllers/coin.controller.js";
 
 const router = express.Router();
@@ -33,5 +34,7 @@ Response: {
 }
 */
 router.get("/deviation/:coin", getDeviation)
+
+router.get("/update-price", handler);
 
 export default router;

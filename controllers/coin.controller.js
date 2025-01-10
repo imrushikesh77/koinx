@@ -1,6 +1,7 @@
 import Coin from "../models/coin.model.js";
 import logger from "../utils/logger.util.js";
 import { calculateDeviation } from "../utils/calculateDeviation.util.js";
+import { updatePriceAfterEveryTwoHours } from "../utils/updatePrice.util.js";
 
 export const getStats = async (req, res) => {
     try {
@@ -53,3 +54,12 @@ export const getDeviation = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 }
+
+export const handler = async(req, res) => {
+    try {
+      await updatePriceAfterEveryTwoHours(); // Call your background job
+      res.status(200).send('Price update job completed successfully');
+    } catch (error) {
+      res.status(500).send('Error occurred while updating prices');
+    }
+  }

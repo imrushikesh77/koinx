@@ -1,10 +1,12 @@
-import { updatePriceAfterEveryTwoHours } from "../utils/updatePrice.util.js";
+import axios from 'axios';
 
-export default async function handler(req, res) {
-    try {
-      await updatePriceAfterEveryTwoHours(); // Call your background job
-      res.status(200).send('Price update job completed successfully');
-    } catch (error) {
-      res.status(500).send('Error occurred while updating prices');
-    }
+async function triggerPriceUpdate() {
+  try {
+    const response = await axios.get('https://koinx-api.vercel.app/api/v1/coin/update-price');
+    console.log('Price update job completed:', response.data);
+  } catch (error) {
+    console.error('Error occurred while updating prices:', error);
   }
+}
+
+triggerPriceUpdate();
