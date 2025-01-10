@@ -10,7 +10,7 @@
   "crons": [
     {
       "path": "/api/updatePrice",      
-      "schedule": "rate(1 minute)"        
+      "schedule": "*/1 * * * *"        
     }
   ]
 }
