@@ -27,4 +27,16 @@ app.get("/health", (req, res) => {
     res.status(200).json({ message: "Server is healthy!!" });
 });
 
+// Default route
+/*
+Method: GET
+Route: /
+Description: Default route
+Access: Public
+Response: "Hello from Vercel!"
+*/
+app.get('/', (req, res) => {
+    res.status(200).send('Hello from Vercel!');
+});
+
 export default app;
