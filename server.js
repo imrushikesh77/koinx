@@ -23,8 +23,6 @@ connectDB()
         app.listen(PORT, ()=>{
             logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
         })
-        // Start the background job to update prices
-        updatePriceAfterEveryTwoHours();
     })
     .catch((err)=>{
         logger.error(`${err.message}`);
