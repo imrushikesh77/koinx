@@ -1,4 +1,4 @@
-import { updatePriceAfterEveryTwoHours } from "../utils/updatePrice.util";
+import { updatePriceAfterEveryTwoHours } from "../utils/updatePrice.util.js";
 
 export default async function handler(req, res) {
     try {
