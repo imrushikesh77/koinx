@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+// Importing logger from utils/logger.util.js
+import logger from "./utils/logger.util.js";
+
 // Importing app from app.js
 import app from "./app.js";
 
@@ -18,12 +21,12 @@ connectDB()
     .then(()=>{
         // Start the server
         app.listen(PORT, ()=>{
-            console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+            logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
             // Start the background job to update prices
             updatePriceAfterEveryTwoHours();
         })
     })
     .catch((err)=>{
-        console.error(`${err.message}`);
+        logger.error(`${err.message}`);
     })
 

@@ -1,23 +1,23 @@
-
+import logger from "./logger.util.js";
 
 export const calculateDeviation = (pastPrices) => {
     try {
         // Ensure that we have a sufficient number of prices (at least 2)
         if (pastPrices.length <= 1) {
-            console.log("Insufficient data to calculate deviation");
+            logger.warn("Insufficient data to calculate deviation");
             return 0;  // No deviation if there are 0 or 1 price points
         }
 
         // Get the latest 100 prices or all if there are fewer than 100
         if (pastPrices.length > 100) {
-            console.log("Truncating past prices to 100 records");
+            logger.warn("Truncating past prices to 100 records");
             pastPrices = pastPrices.slice(pastPrices.length - 100);
         }
 
         const totalPrices = pastPrices.length;
 
         if (totalPrices <= 2) {
-            console.log("Insufficient data to calculate deviation");
+            logger.warn("Insufficient data to calculate deviation");
             return 0;  // No deviation if there are 0 or 1 price points
         }
 
@@ -41,6 +41,6 @@ export const calculateDeviation = (pastPrices) => {
 
         return standardDeviation;
     } catch (err) {
-        console.error(`Error in calculating deviation: ${err.message}`);
+        logger.error(`Error in calculating deviation: ${err.message}`);
     }
 };

@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
+import logger from "../utils/logger.util.js";
 import mongoose from "mongoose";
 import Coin from "../models/coin.model.js";
 
@@ -36,14 +37,14 @@ const seedCoins = async () => {
             if (!existingCoin) {
                 // Insert the coin
                 await Coin.create(coin);
-                console.log(`Coin ${coin.name} seeded.`);
+                logger.info(`Coin ${coin.name} seeded.`);
             } else {
-                console.log(`Coin ${coin.name} already exists.`);
+                logger.warn(`Coin ${coin.name} already exists.`);
             }
         }
-        console.log("Coins seeded successfully.");
+        logger.info("Coins seeded successfully.");
     } catch (err) {
-        console.error(`Error seeding coins: ${err.message}`);
+        logger.error(`Error seeding coins: ${err.message}`);
     }
 };
 
@@ -51,12 +52,12 @@ const connectDB = async () => {
     try {
         // Connect to MongoDB
         const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log(`MongoDB connected: ${conn.connection.host}`);
+        logger.info(`MongoDB connected: ${conn.connection.host}`);
 
         // Seed coins if the database is empty
         await seedCoins();
     } catch (err) {
-        console.error(`Error connecting to MongoDB: ${err.message}`);
+        logger.error(`Error connecting to MongoDB: ${err.message}`);
         process.exit(1);
     }
 };

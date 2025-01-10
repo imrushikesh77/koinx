@@ -1,4 +1,5 @@
 import Coin from "../models/coin.model.js";
+import logger from "../utils/logger.util.js";
 import { calculateDeviation } from "../utils/calculateDeviation.util.js";
 
 export const getStats = async (req, res) => {
@@ -12,7 +13,7 @@ export const getStats = async (req, res) => {
 
         // If the coin isn't found
         if (!coinData) {
-            console.log(`Coin ${coin} not found, returning 404`);
+            logger.warn(`Coin ${coin} not found, returning 404`);
             return res.status(404).json({ message: "Coin not found" });
         }
         
@@ -23,7 +24,7 @@ export const getStats = async (req, res) => {
             "24hChange":coinData["24hChange"]
         });
     } catch (err) {
-        console.error(`Error in getStats: ${err.message}`);
+        logger.error(`Error in getStats: ${err.message}`);
         res.status(500).json({ message: err.message });
     }
 }
@@ -38,7 +39,7 @@ export const getDeviation = async (req, res) => {
 
         // If the coin isn't found
         if (!coinData) {
-            console.log(`Coin ${coin} not found, returning 404`);
+            logger.warn(`Coin ${coin} not found, returning 404`);
             return res.status(404).json({ message: "Coin not found" });
         }
 
@@ -48,7 +49,7 @@ export const getDeviation = async (req, res) => {
         // Return the deviation
         res.status(200).json(deviation);
     } catch (err) {
-        console.error(`Error in getDeviation: ${err.message}`);
+        logger.error(`Error in getDeviation: ${err.message}`);
         res.status(500).json({ message: err.message });
     }
 }
