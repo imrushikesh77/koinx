@@ -2,11 +2,15 @@ name: Scheduled Price Update
 
 on:
   schedule:
-    - cron: '* * * * *'  # Runs once every hour
+    - cron: '* * * * *'  # Runs once every minute (you can adjust this)
   workflow_dispatch:
 
 jobs:
   update-price:
+    concurrency:
+      group: "scheduled-price-update"
+      cancel-in-progress: true
+
     runs-on: ubuntu-latest
 
     steps:
