@@ -1,0 +1,28 @@
+name: Scheduled Price Update
+
+on:
+  schedule:
+    - cron: '* * * * *'  # Runs once every hour
+  workflow_dispatch:
+
+jobs:
+  update-price:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the update script
+        run: node api/updatePrice.js
+        env:
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }} 
+          COINGECKO_API_URL: ${{ secrets.COINGECKO_API_URL }} 
