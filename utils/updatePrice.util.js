@@ -23,6 +23,7 @@ export const updatePriceAfterEveryTwoHours = async () => {
 
             // Fetch the price for each coin from the API
             for (const coin of coins) {
+                logger.info(`Updating price for ${coin.name}...`);
                 // Make the API call to fetch coin data
                 const options = {
                     method: 'GET',
