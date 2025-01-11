@@ -36,7 +36,7 @@ Access: Public
 Response: "Hello from Vercel!"
 */
 app.get('/', (req, res) => {
-    res.status(200).send('Hello from Vercel!');
+    res.status(200).send('Hello from KoinX API!!');
 });
 
 export default app;
